@@ -1,28 +1,34 @@
-import Section from './components/section';
-import Container from './components/container';
-import Title from './components/title';
-import Form from './components/form';
-import Filter from './components/filter';
-import Contacts from './components/contacts';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchContacts } from './redux/contacts/operations/contactsOperations';
-import { Toaster } from 'react-hot-toast';
+import { Switch, Route } from 'react-router-dom';
+import AppBar from './components/AppBar';
+import ContactsPage from './pages/ContactsPage';
+import HomePage from './pages/HomePage';
+import SigninPage from './pages/SigninPage';
+import LoginPage from './pages/LoginPage';
+import Container from './components/Container';
+import { authOperations } from './redux/auth';
+import Section from 'components/Section';
 
 export default function App() {
   const dispatch = useDispatch();
-  useEffect(() => dispatch(fetchContacts()), [dispatch]);
+
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
-    <>
-      <Toaster position="top-right" />
-      <Form />
-      <Section>
-        <Container>
-          <Title title="Contacts" />
-          <Filter />
-          <Contacts />
-        </Container>
-      </Section>
-    </>
+    <Section>
+      <Container>
+        <AppBar />
+
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/signin" component={SigninPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/contacts" component={ContactsPage} />
+        </Switch>
+      </Container>
+    </Section>
   );
 }

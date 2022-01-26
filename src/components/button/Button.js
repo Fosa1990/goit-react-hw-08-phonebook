@@ -7,10 +7,12 @@ export default function Button({ content, type, handleClick, disabled }) {
     </ButtonWrapper>
   );
 }
+
 Button.defaultPtops = {
   type: 'button',
   disabled: true,
 };
+
 const ButtonWrapper = styled.button`
   border: 1px solid rgb(255, 252, 252);
   border-radius: 10px;

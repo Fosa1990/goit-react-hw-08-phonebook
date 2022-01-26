@@ -1,18 +1,18 @@
 import styled from 'styled-components';
-import Button from '../button';
-import { deleteContact } from '../../redux/contacts/operations/contactsOperations';
+import Button from '../Button';
+import { operations } from 'redux/contacts';
 import { useDispatch } from 'react-redux';
 
-export default function ContactsItem({ name, phone, id }) {
+export default function ContactsItem({ name, number, id }) {
   const dispatch = useDispatch();
   return (
     <Tr>
       <Td>{name}</Td>
-      <Td>{phone}</Td>
+      <Td>{number}</Td>
       <Td>
         <Button
           content="Delete"
-          handleClick={() => dispatch(deleteContact(id))}
+          handleClick={() => dispatch(operations.deleteContact(id))}
         />
       </Td>
     </Tr>

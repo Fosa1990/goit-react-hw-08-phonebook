@@ -1,15 +1,22 @@
 import styled from 'styled-components';
-import Spinner from '../spinner/Spinner';
-import { useSelector } from 'react-redux';
-import {
-  filteredContacts,
-  isLoading,
-} from '../../redux/contacts/selectors/contactsSelectors';
+import Spinner from '../Spinner/Spinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { selectors } from 'redux/contacts';
+import { operations } from 'redux/contacts';
 import ContactsItem from './ContactsItem';
+import { authSelectors } from 'redux/auth';
 
 export default function Contacts() {
-  const contacts = useSelector(filteredContacts);
-  const loading = useSelector(isLoading);
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectors.filteredContacts);
+  const loading = useSelector(selectors.isLoading);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
+  useEffect(() => {
+    isLoggedIn && dispatch(operations.fetchContacts());
+  }, [dispatch, isLoggedIn]);
+
   return (
     <>
       {loading && <Spinner />}
@@ -27,7 +34,7 @@ export default function Contacts() {
             <ContactsItem
               key={person.id}
               name={person.name}
-              phone={person.phone}
+              number={person.number}
               id={person.id}
             />
           ))}
