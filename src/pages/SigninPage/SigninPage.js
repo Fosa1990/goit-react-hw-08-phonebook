@@ -1,5 +1,5 @@
 import Container from 'components/Container';
-import Button from 'components/Button';
+import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -37,41 +37,55 @@ export default function RegisterPage() {
       <H1>Registration Page</H1>
 
       <SigninForm onSubmit={handleSubmit} autoComplete="off">
-        <SigninLabel>
-          Name
-          <SigninInput
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-          />
-        </SigninLabel>
+        <SigninInput
+          label="Name"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          variant="outlined"
+          required
+          margin="dense"
+        />
 
-        <SigninLabel>
-          Email
-          <SigninInput
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </SigninLabel>
+        <SigninInput
+          label="Email"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          variant="outlined"
+          required
+          margin="dense"
+        />
 
-        <SigninLabel>
-          Password
-          <SigninInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </SigninLabel>
+        <SigninInput
+          label="Password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          variant="outlined"
+          helperText="Password must be longer than 7 characters"
+          required
+          min="7"
+          max="16"
+          margin="dense"
+        />
 
         <Button
-          content="Log in"
           type="submit"
-          disabled={name === '' || email === '' || password === ''}
-        />
+          disabled={
+            name === '' ||
+            email === '' ||
+            password === '' ||
+            password.length < 7
+          }
+          color="primary"
+          variant="contained"
+        >
+          Sign up
+        </Button>
       </SigninForm>
     </Container>
   );
@@ -93,32 +107,17 @@ const SigninForm = styled.form`
   margin: 0 auto;
   width: 100%;
   font-family: var(--font);
+  background-color: var(--light);
   button {
     margin: 0 auto;
     width: 200px;
     padding: 5px 20px;
     font-size: 18px;
-    :hover {
-      background-color: var(--green);
-      border: 1px solid var(--white);
-    }
-    :disabled:hover {
-      cursor: not-allowed;
-      color: var(--white);
-      background-color: var(--red);
-      border: 1px solid var(--white);
-    }
   }
 `;
-const SigninLabel = styled.label`
-  margin: 0 0 2px 0;
-  font-family: var(--font);
-  font-size: 18px;
-  font-weight: 600;
-`;
-const SigninInput = styled.input`
+const SigninInput = styled(TextField)`
   padding: 5px 20px;
-  margin-bottom: 20px;
+  margin: 20px 0 px;
   width: 100%;
   border-radius: 10px;
 `;

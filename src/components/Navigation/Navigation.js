@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { authSelectors } from '../redux/auth';
+import { authSelectors } from '../../redux/auth';
 import styled from 'styled-components';
 
 const active = { color: 'var(--light-blue)' };
@@ -30,6 +30,9 @@ const NavLinkWrapper = styled(NavLink)`
   color: white;
   :hover {
     color: var(--light-blue);
+  }
+  .activeLink {
+    color: purple;
   }
 `;
 

@@ -1,13 +1,14 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
-import AppBar from 'components/AppBar';
+import AppBar from 'components/AppBar/AppBar';
 import Container from 'components/Container';
-import PrivateRoute from 'components/PrivateRoute';
-import PublicRoute from 'components/PublicRoute';
+import PrivateRoute from 'components/Routes/PrivateRoute';
+import PublicRoute from 'components/Routes/PublicRoute';
 import Section from 'components/Section';
-import Preloader from 'components/Preloader';
+import Spinner from 'components/Spinner';
 import { authOperations, authSelectors } from 'redux/auth';
+import { Toaster } from 'react-hot-toast';
 
 const ContactsPage = lazy(() =>
   import('./pages/ContactsPage' /* webpackChunkName: "Contacts-page" */),
@@ -33,42 +34,41 @@ export default function App() {
   return (
     <Section>
       <Container>
+        <Toaster position="top-right" />
+        <AppBar />
+        {isFetchingCurrentUser && <Spinner />}
         {isFetchingCurrentUser ? (
-          <h1>Loading...</h1>
+          <Spinner />
         ) : (
-          <>
-            <AppBar />
+          <Switch>
+            <Suspense fallback={<Spinner />}>
+              <PublicRoute exact path="/">
+                <HomePage />
+              </PublicRoute>
 
-            <Switch>
-              <Suspense fallback={<Preloader />}>
-                <PublicRoute exact path="/">
-                  <HomePage />
-                </PublicRoute>
+              <PublicRoute
+                exact
+                path="/signin"
+                redirectTo="/contacts"
+                restricted
+              >
+                <SigninPage />
+              </PublicRoute>
 
-                <PublicRoute
-                  exact
-                  path="/signin"
-                  redirectTo="/contacts"
-                  restricted
-                >
-                  <SigninPage />
-                </PublicRoute>
+              <PublicRoute
+                exact
+                path="/login"
+                redirectTo="/contacts"
+                restricted
+              >
+                <LoginPage />
+              </PublicRoute>
 
-                <PublicRoute
-                  exact
-                  path="/login"
-                  redirectTo="/contacts"
-                  restricted
-                >
-                  <LoginPage />
-                </PublicRoute>
-
-                <PrivateRoute exact path="/contacts" redirectTo="/contacts">
-                  <ContactsPage />
-                </PrivateRoute>
-              </Suspense>
-            </Switch>
-          </>
+              <PrivateRoute exact path="/contacts" redirectTo="/contacts">
+                <ContactsPage />
+              </PrivateRoute>
+            </Suspense>
+          </Switch>
         )}
       </Container>
     </Section>

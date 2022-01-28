@@ -1,9 +1,9 @@
 import Container from 'components/Container';
-import Button from 'components/Button';
+import { Button, TextField } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { authOperations } from 'redux/auth';
+import styled from 'styled-components';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -33,31 +33,37 @@ export default function LoginPage() {
       <H1>Login page</H1>
 
       <LoginForm onSubmit={handleSubmit} autoComplete="off">
-        <LoginLabel>
-          Email
-          <LoginInput
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </LoginLabel>
+        <LoginInput
+          label="Email"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          variant="outlined"
+          required
+          margin="dense"
+        />
 
-        <LoginLabel>
-          Password
-          <LoginInput
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </LoginLabel>
+        <LoginInput
+          label="Password"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          variant="outlined"
+          required
+          min="7"
+          margin="dense"
+        />
 
         <Button
-          content="Log in"
           type="submit"
-          disabled={email === '' || password === ''}
-        />
+          disabled={email === '' || password === '' || password.length < 7}
+          color="primary"
+          variant="contained"
+        >
+          Login
+        </Button>
       </LoginForm>
     </Container>
   );
@@ -79,30 +85,15 @@ const LoginForm = styled.form`
   margin: 0 auto;
   width: 100%;
   font-family: var(--font);
+  background-color: var(--light);
   button {
     margin: 0 auto;
     width: 200px;
     padding: 5px 20px;
     font-size: 18px;
-    :hover {
-      background-color: var(--green);
-      border: 1px solid var(--white);
-    }
-    :disabled:hover {
-      cursor: not-allowed;
-      color: var(--white);
-      background-color: var(--red);
-      border: 1px solid var(--white);
-    }
   }
 `;
-const LoginLabel = styled.label`
-  margin: 0 0 2px 0;
-  font-family: var(--font);
-  font-size: 18px;
-  font-weight: 600;
-`;
-const LoginInput = styled.input`
+const LoginInput = styled(TextField)`
   padding: 5px 20px;
   margin-bottom: 20px;
   width: 100%;

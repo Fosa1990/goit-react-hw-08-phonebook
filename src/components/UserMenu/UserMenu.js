@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
+import { Button } from '@mui/material';
 import defaultAvatar from 'images/png/default-avatar.png';
 import styled from 'styled-components';
 
@@ -12,9 +13,13 @@ export default function UserMenu() {
     <Wrapper>
       <Avatar src={avatar} alt="" width="32" />
       <Span>Welcome, {name}</Span>
-      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+      <Button
+        type="button"
+        variant="contained"
+        onClick={() => dispatch(authOperations.logOut())}
+      >
         Logout
-      </button>
+      </Button>
     </Wrapper>
   );
 }
