@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export default function Button({ content, type, handleClick, disabled }) {
@@ -11,6 +12,14 @@ export default function Button({ content, type, handleClick, disabled }) {
 Button.defaultPtops = {
   type: 'button',
   disabled: true,
+  handleClick: () => null,
+};
+
+Button.propTypes = {
+  content: PropTypes.string,
+  type: PropTypes.string,
+  handleClick: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 const ButtonWrapper = styled.button`

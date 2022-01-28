@@ -10,6 +10,7 @@ export default function AuthNav() {
       <NavLinkWrapper to="/signin" exact activeStyle={active}>
         Sign in
       </NavLinkWrapper>
+
       <NavLinkWrapper to="/login" exact activeStyle={active}>
         Log in
       </NavLinkWrapper>

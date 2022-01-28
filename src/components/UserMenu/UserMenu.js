@@ -13,7 +13,7 @@ export default function UserMenu() {
       <Avatar src={avatar} alt="" width="32" />
       <Span>Welcome, {name}</Span>
       <button type="button" onClick={() => dispatch(authOperations.logOut())}>
-        Log out
+        Logout
       </button>
     </Wrapper>
   );

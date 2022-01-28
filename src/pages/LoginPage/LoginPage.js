@@ -3,7 +3,7 @@ import Button from 'components/Button';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { authOperations } from '../../redux/auth';
+import { authOperations } from 'redux/auth';
 
 export default function LoginPage() {
   const dispatch = useDispatch();

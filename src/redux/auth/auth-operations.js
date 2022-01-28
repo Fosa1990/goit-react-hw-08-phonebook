@@ -12,10 +12,7 @@ const token = {
   },
 };
 
-/*
- * POST @ /users/signup
- * body: { name, email, password }
- */
+// body: { name, email, password }
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const { data } = await axios.post('/users/signup', credentials);
@@ -26,10 +23,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
   }
 });
 
-/*
- * POST @ /users/login
- * body: { email, password }
- */
+// body: { email, password }
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const { data } = await axios.post('/users/login', credentials);
@@ -40,10 +34,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
   }
 });
 
-/*
- * POST @ /users/logout
- * headers: Authorization: Bearer token
- */
+// headers: Authorization: Bearer token
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
@@ -52,10 +43,8 @@ const logOut = createAsyncThunk('auth/logout', async () => {
     throw new Error(error);
   }
 });
-/*
- * GET @ /users/current
- * headers: Authorization: Bearer token
- */
+
+// headers: Authorization: Bearer token
 const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
@@ -63,7 +52,7 @@ const fetchCurrentUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
-      console.log('Токена нет, уходим из fetchCurrentUser');
+      console.log('There is no token, we leave fetchCurrentUser');
       return thunkAPI.rejectWithValue();
     }
 
