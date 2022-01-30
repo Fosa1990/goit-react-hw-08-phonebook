@@ -1,7 +1,6 @@
-import React from 'react';
+// import GoogleAuth from 'components/GoogleAuth';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
 const active = { color: 'var(--yellow)' };
 
 export default function AuthNav() {
@@ -10,10 +9,10 @@ export default function AuthNav() {
       <NavLinkWrapper to="/signin" exact activeStyle={active}>
         Sign in
       </NavLinkWrapper>
-
       <NavLinkWrapper to="/login" exact activeStyle={active}>
         Log in
       </NavLinkWrapper>
+      {/* <GoogleAuth /> */}
     </div>
   );
 }
