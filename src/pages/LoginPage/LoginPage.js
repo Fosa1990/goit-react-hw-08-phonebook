@@ -1,9 +1,9 @@
-import Container from 'components/Container';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Container, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import styled from 'styled-components';
+import { styled } from '@mui/material/styles';
+import styles from 'styled-components';
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -24,13 +24,13 @@ export default function LoginPage() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.logIn({ email, password }));
-    setEmail('');
-    setPassword('');
+    // setEmail('');
+    // setPassword('');
   };
 
   return (
-    <Container>
-      <H1>Login page</H1>
+    <ContainerWrapper fixed>
+      <Title component="h1">Login page</Title>
 
       <LoginForm onSubmit={handleSubmit} autoComplete="off">
         <LoginInput
@@ -56,26 +56,20 @@ export default function LoginPage() {
           margin="dense"
         />
 
-        <Button
+        <LoginButton
           type="submit"
           disabled={email === '' || password === '' || password.length < 7}
           color="primary"
           variant="contained"
         >
-          Login
-        </Button>
+          Submit
+        </LoginButton>
       </LoginForm>
-    </Container>
+    </ContainerWrapper>
   );
 }
 
-const H1 = styled.h1`
-  color: var(--yellow);
-  font-size: 32px;
-  font-family: var(--big);
-  text-align: center;
-`;
-const LoginForm = styled.form`
+const LoginForm = styles.form`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -85,17 +79,25 @@ const LoginForm = styled.form`
   margin: 0 auto;
   width: 100%;
   font-family: var(--font);
-  background-color: var(--light);
-  button {
-    margin: 0 auto;
-    width: 200px;
-    padding: 5px 20px;
-    font-size: 18px;
-  }
+`;
+const ContainerWrapper = styled(Container)`
+  padding-top: 10px;
+  padding-bottom: 20px;
+`;
+const Title = styled(Typography)`
+  color: var(--lighter-blue);
+  font-size: 32px;
+  font-family: var(--big);
+  text-align: center;
 `;
 const LoginInput = styled(TextField)`
-  padding: 5px 20px;
   margin-bottom: 20px;
   width: 100%;
   border-radius: 10px;
+`;
+const LoginButton = styled(Button)`
+  margin: 0 auto;
+  width: 200px;
+  padding: 5px 20px;
+  font-size: 18px;
 `;

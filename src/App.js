@@ -33,8 +33,8 @@ export default function App() {
 
   return (
     <Section>
-      <Container>
-        <Toaster position="top-right" />
+      <Container fixed>
+        <Toaster position="top-center" />
         <AppBar />
         {isFetchingCurrentUser && <Spinner />}
         {isFetchingCurrentUser ? (
@@ -64,7 +64,7 @@ export default function App() {
                 <LoginPage />
               </PublicRoute>
 
-              <PrivateRoute exact path="/contacts" redirectTo="/contacts">
+              <PrivateRoute exact path="/contacts" redirectTo="/login">
                 <ContactsPage />
               </PrivateRoute>
             </Suspense>

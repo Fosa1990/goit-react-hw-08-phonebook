@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectors } from 'redux/contacts';
 import { operations } from 'redux/contacts';
-import styled from 'styled-components';
-import Section from '../Section';
-import Container from '../Container';
-import Title from '../Title';
-import Button from '../Button';
+import { Button, TextField, Typography, Container } from '@mui/material';
 import { NAME, NUMBER } from 'helpers/constants';
 import toast from 'react-hot-toast';
+import { styled } from '@mui/material/styles';
+import styles from 'styled-components';
 
 export default function Form() {
   const contacts = useSelector(selectors.getItems);
@@ -50,49 +48,57 @@ export default function Form() {
   };
 
   return (
-    <Section>
-      <Container>
-        <Title title="Phonebook" />
-        <MainForm autoComplete="off" onSubmit={handleFormSubmit}>
-          <FormLabel>
-            Name
-            <FormInput
-              type="text"
-              name="name"
-              value={name}
-              placeholder="Enter fullname"
-              onChange={handleInputChange}
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-            />
-          </FormLabel>
-          <FormLabel>
-            Number
-            <FormInput
-              type="tel"
-              name="number"
-              value={number}
-              placeholder="Enter number number"
-              onChange={handleInputChange}
-              minLength="7"
-              maxLength="17"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="number number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-            />
-          </FormLabel>
-          <Button
-            content="Add contact"
-            type="submit"
-            disabled={name === '' || number === ''}
-          />
-        </MainForm>
-      </Container>
-    </Section>
+    <ContainerWrapper fixed>
+      <Title component="h1" variant="h1">
+        Phonebook
+      </Title>
+      <MainForm autoComplete="off" onSubmit={handleFormSubmit}>
+        <FormInput
+          label="Name"
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Enter fullname"
+          onChange={handleInputChange}
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          variant="outlined"
+          margin="dense"
+          required
+        />
+
+        <FormInput
+          label="Number"
+          type="tel"
+          name="number"
+          value={number}
+          placeholder="Enter number number"
+          onChange={handleInputChange}
+          min="7"
+          max="17"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="number number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          variant="outlined"
+          margin="dense"
+          required
+        />
+        <ContactsButton
+          type="submit"
+          color="primary"
+          variant="contained"
+          disabled={name === '' || number === ''}
+        >
+          Add contact
+        </ContactsButton>
+      </MainForm>
+    </ContainerWrapper>
   );
 }
-const MainForm = styled.form`
+const ContainerWrapper = styled(Container)`
+  padding-top: 20px;
+  padding-bottom: 20px;
+`;
+const MainForm = styles.form`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -102,31 +108,21 @@ const MainForm = styled.form`
   margin: 0 auto;
   width: 100%;
   font-family: var(--font);
-  button {
-    margin: 0 auto;
-    width: 200px;
-    padding: 5px 20px;
-    :hover {
-      background-color: var(--green);
-      border: 1px solid var(--light-blue);
-    }
-    :disabled:hover {
-      cursor: not-allowed;
-      color: var(--red);
-      background-color: var(--white);
-      border: 1px solid var(--red);
-    }
-  }
 `;
-const FormLabel = styled.label`
-  margin: 0 0 2px 0;
-  font-family: var(--font);
-  font-size: 18px;
-  font-weight: 600;
+const Title = styled(Typography)`
+  font-size: 32px;
+  font-family: var(--big);
+  text-align: center;
+  color: var(--lighter-blue);
 `;
-const FormInput = styled.input`
-  padding: 5px 20px;
+const FormInput = styled(TextField)`
   margin-bottom: 20px;
   width: 100%;
   border-radius: 10px;
+`;
+const ContactsButton = styled(Button)`
+  margin: 0 auto;
+  width: 200px;
+  padding: 5px 20px;
+  font-size: 18px;
 `;

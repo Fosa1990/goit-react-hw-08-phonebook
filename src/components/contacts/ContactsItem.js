@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import Button from '../Button';
+import { Button } from '@mui/material';
 import { operations } from 'redux/contacts';
 import { useDispatch } from 'react-redux';
+import styles from 'styled-components';
+import { styled } from '@mui/material/styles';
 
 export default function ContactsItem({ name, number, id }) {
   const dispatch = useDispatch();
@@ -10,37 +11,34 @@ export default function ContactsItem({ name, number, id }) {
       <Td>{name}</Td>
       <Td>{number}</Td>
       <Td>
-        <Button
-          content="Delete"
-          handleClick={() => dispatch(operations.deleteContact(id))}
-        />
+        <ButtonStyled
+          type="button"
+          variant="outlined"
+          color="primary"
+          onClick={() => dispatch(operations.deleteContact(id))}
+        >
+          Delete
+        </ButtonStyled>
       </Td>
     </Tr>
   );
 }
-const Tr = styled.tr`
-  background-color: rgb(231, 231, 231);
+const Tr = styles.tr`
+background-color: var(--bright-blue);
   :nth-of-type(2n + 1) {
     background-color: var(--white);
   }
 `;
-const Td = styled.td`
+const Td = styles.td`
   padding: 7px 10px 7px 10px;
   text-align: center;
-  color: lightslategray;
+  color: var(--dark-blue);
   outline: 0.1px solid rgb(243, 237, 237);
-
-  Button {
-    margin: 0;
-    padding: 2px 0;
-    width: 100%;
-    height: auto;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    background-color: transparent;
-    :hover {
-      background-color: var(--light-purple);
-    }
+`;
+const ButtonStyled = styled(Button)`
+  background-color: transparent;
+  :hover {
+    color: var(--yellow);
+    background-color: var(--lighter-blue);
   }
 `;

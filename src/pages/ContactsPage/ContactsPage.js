@@ -1,21 +1,25 @@
-import Section from '../../components/Section';
-import Container from '../../components/Container';
-import Title from '../../components/Title';
-import Form from '../../components/Form';
-import Filter from '../../components/Filter';
-import Contacts from '../../components/Contacts';
+import Form from 'components/Form';
+import Filter from 'components/Filter';
+import Contacts from 'components/Contacts';
+import { styled } from '@mui/material/styles';
+import { Typography, Container } from '@mui/material';
 
 export default function ContactsPage() {
   return (
     <>
-      <Form />
-      <Section>
-        <Container>
-          <Title title="Contacts" />
-          <Filter />
-          <Contacts />
-        </Container>
-      </Section>
+      <Container fixed>
+        <Form />
+        <TypographyStyled align="center" component="h2" variant="h3">
+          Contacts
+        </TypographyStyled>
+        <Filter />
+        <Contacts />
+      </Container>
     </>
   );
 }
+
+const TypographyStyled = styled(Typography)`
+  font-family: var(--big);
+  color: var(--yellow);
+`;

@@ -5,6 +5,8 @@
   --big: 'Montserrat', sans-serif;
   --red: #ef2f3c;
   --white: #f6f4f3;
+  --bright-blue: #acc5e1;
+  --lighter-blue: #1976d2;
   --light-blue: #276fbf;
   --dark-blue: #183059;
   --light-purple: #3f51b5;
@@ -14,6 +16,7 @@
   --green: #27991a;
   --light: #dae8f8;
   --dark: #000000;
+  --light-bg: rgba(255, 255, 255, 0.739);
   --backdrop: rgba(0, 0, 0, 0.8);
   --gradient-start-color: #ef9e9e;
   --gradient-middle-color: #950000;
@@ -32,15 +35,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--light-blue);
-  background-color: var(--darkest-blue);
-  background-image: url('images/png/beige-paper.png');
+  color: var(--white);
+  background-color: var(--lighter-blue);
+  background-image: url('images/jpg/cyber-city.jpg');
 }
 
 code {

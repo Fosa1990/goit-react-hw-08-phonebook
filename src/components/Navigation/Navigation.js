@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { authSelectors } from '../../redux/auth';
+import { authSelectors } from 'redux/auth';
 import styled from 'styled-components';
 
-const active = { color: 'var(--light-blue)' };
+const active = { color: 'var(--yellow)' };
 
 const Navigation = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -29,10 +29,7 @@ const NavLinkWrapper = styled(NavLink)`
   font-weight: 700;
   color: white;
   :hover {
-    color: var(--light-blue);
-  }
-  .activeLink {
-    color: purple;
+    color: var(--light);
   }
 `;
 

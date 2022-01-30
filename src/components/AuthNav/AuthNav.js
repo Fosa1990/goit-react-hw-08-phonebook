@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const active = { color: 'var(--light-blue)' };
+const active = { color: 'var(--yellow)' };
 
 export default function AuthNav() {
   return (
@@ -25,6 +25,6 @@ const NavLinkWrapper = styled(NavLink)`
   font-weight: 700;
   color: white;
   :hover {
-    color: var(--light-blue);
+    color: var(--light);
   }
 `;

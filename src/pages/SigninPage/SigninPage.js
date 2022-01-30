@@ -1,9 +1,9 @@
-import Container from 'components/Container';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Container, Typography } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { authOperations } from 'redux/auth';
+import { styled } from '@mui/material/styles';
+import styles from 'styled-components';
 
 export default function RegisterPage() {
   const dispatch = useDispatch();
@@ -27,14 +27,14 @@ export default function RegisterPage() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    setName('');
-    setEmail('');
-    setPassword('');
+    // setName('');
+    // setEmail('');
+    // setPassword('');
   };
 
   return (
-    <Container>
-      <H1>Registration Page</H1>
+    <ContainerWrapper fixed>
+      <Title component="h1">Registration Page</Title>
 
       <SigninForm onSubmit={handleSubmit} autoComplete="off">
         <SigninInput
@@ -73,7 +73,7 @@ export default function RegisterPage() {
           margin="dense"
         />
 
-        <Button
+        <SigninButton
           type="submit"
           disabled={
             name === '' ||
@@ -84,20 +84,14 @@ export default function RegisterPage() {
           color="primary"
           variant="contained"
         >
-          Sign up
-        </Button>
+          Submit
+        </SigninButton>
       </SigninForm>
-    </Container>
+    </ContainerWrapper>
   );
 }
 
-const H1 = styled.h1`
-  color: var(--yellow);
-  font-size: 32px;
-  font-family: var(--big);
-  text-align: center;
-`;
-const SigninForm = styled.form`
+const SigninForm = styles.form`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -107,17 +101,25 @@ const SigninForm = styled.form`
   margin: 0 auto;
   width: 100%;
   font-family: var(--font);
-  background-color: var(--light);
-  button {
-    margin: 0 auto;
-    width: 200px;
-    padding: 5px 20px;
-    font-size: 18px;
-  }
+`;
+const ContainerWrapper = styled(Container)`
+  padding-top: 10px;
+  padding-bottom: 20px;
+`;
+const Title = styled(Typography)`
+  color: var(--lighter-blue);
+  font-size: 32px;
+  font-family: var(--big);
+  text-align: center;
 `;
 const SigninInput = styled(TextField)`
-  padding: 5px 20px;
   margin: 20px 0 px;
   width: 100%;
   border-radius: 10px;
+`;
+const SigninButton = styled(Button)`
+  margin: 0 auto;
+  width: 200px;
+  padding: 5px 20px;
+  font-size: 18px;
 `;

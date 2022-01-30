@@ -1,8 +1,17 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import { Container } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-export default function Container({ children, className }) {
-  return <ContainerWrapper className={className}>{children}</ContainerWrapper>;
+export default function ContainerComponent({
+  children,
+  className,
+  ...allyProps
+}) {
+  return (
+    <ContainerWrapper className={className} {...allyProps}>
+      {children}
+    </ContainerWrapper>
+  );
 }
 
 Container.propTypes = {
@@ -10,22 +19,21 @@ Container.propTypes = {
   children: PropTypes.node,
 };
 
-export const ContainerWrapper = styled.div`
+export const ContainerWrapper = styled(Container)`
   padding: 0 10px;
   margin: 0 auto;
   width: 100%;
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
     min-width: 320px;
+    padding: 0;
   }
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     width: 768px;
-    padding-left: 75px;
-    padding-right: 75px;
+    padding: 0;
   }
   @media screen and (min-width: 1024px) {
     width: 1024px;
-    padding-left: 71px;
-    padding-right: 71px;
+    padding: 0;
   }
 `;

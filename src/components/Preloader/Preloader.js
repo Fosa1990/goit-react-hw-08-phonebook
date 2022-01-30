@@ -4,7 +4,7 @@ export default function Preloader() {
   return <PreloaderWrapper />;
 }
 
-const PreloaderWrapper = styled.div`
+const PreloaderWrapper = styled.span`
   display: inline-block;
   position: fixed;
   z-index: 1;

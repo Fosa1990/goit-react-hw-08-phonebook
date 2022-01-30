@@ -21,7 +21,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     toast.success('Successfully registered');
     return data;
   } catch (error) {
-    toast.error('Successfully registered');
+    toast.error('Failed to register, check the entered data');
     throw new Error(error);
   }
 });

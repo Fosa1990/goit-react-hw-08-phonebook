@@ -1,37 +1,42 @@
-import styled from 'styled-components';
-import { useSelector, useDispatch } from 'react-redux';
 import { selectors } from 'redux/contacts';
+import { useSelector, useDispatch } from 'react-redux';
 import addFilter from 'redux/contacts/contacts-actions';
+import { Typography, InputLabel, Input, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 export default function Filter() {
   const dispatch = useDispatch();
   const value = useSelector(selectors.getFilter);
   const onChange = event => dispatch(addFilter(event.currentTarget.value));
   return (
-    <Label>
-      <Title>
-        Find contacts by <Span>name</Span>
-      </Title>
-      <Input type="search" name="search" value={value} onChange={onChange} />
-    </Label>
+    <LabelStyled color="info" variant="standard">
+      <TitleStyled align="center" component="h3" variant="h6">
+        Find contacts by <BoxStyled component="span">name</BoxStyled>
+      </TitleStyled>
+      <InputStyled
+        type="search"
+        name="search"
+        value={value}
+        onChange={onChange}
+        color="primary"
+      />
+    </LabelStyled>
   );
 }
 
-const Label = styled.label`
+const LabelStyled = styled(InputLabel)`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-const Title = styled.p`
-  margin: 5px 0;
-  color: var(--white);
+const TitleStyled = styled(Typography)`
+  color: var(--lighter-blue);
   font-family: var(--font);
-  font-size: 18px;
-  line-height: 1.5;
 `;
-const Span = styled.span`
-  color: var(--yellow);
-`;
-const Input = styled.input`
+const InputStyled = styled(Input)`
+  padding: 0 10px;
   color: var(--light-blue);
+`;
+const BoxStyled = styled(Box)`
+  color: var(--yellow);
 `;

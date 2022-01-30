@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, authOperations } from '../../redux/auth';
-import { Button } from '@mui/material';
-import defaultAvatar from 'images/png/default-avatar.png';
-import styled from 'styled-components';
+import { Button, Avatar } from '@mui/material';
+import { Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import styles from 'styled-components';
+import defaultAvatar from 'images/png/black_rabbit_ low.png';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
@@ -10,12 +12,13 @@ export default function UserMenu() {
   const avatar = defaultAvatar;
 
   return (
-    <Wrapper>
-      <Avatar src={avatar} alt="" width="32" />
-      <Span>Welcome, {name}</Span>
+    <Wrapper component="div">
+      <AvatarImage src={avatar} alt="User avatar" width="32" />
+      <Span component="span">{name}</Span>
       <Button
         type="button"
-        variant="contained"
+        variant="outlined"
+        color="inherit"
         onClick={() => dispatch(authOperations.logOut())}
       >
         Logout
@@ -24,14 +27,20 @@ export default function UserMenu() {
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(Box)`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  @media screen and (max-width: 551px) {
+    justify-content: flex-end;
+  }
 `;
-const Avatar = styled.img`
-  margin-right: 5px;
+const AvatarImage = styles(Avatar)`
+  margin-right: 10px;
 `;
-const Span = styled.span`
+const Span = styled(Box)`
+  display: inline-block;
   font-weight: 700;
   margin-right: 12px;
+  color: var(--yellow);
 `;

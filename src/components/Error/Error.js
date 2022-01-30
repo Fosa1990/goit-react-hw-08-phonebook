@@ -1,7 +1,9 @@
 import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
-import styled from 'styled-components';
+import { Typography } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import styles from 'styled-components';
 
 export default function Error({ error }) {
   const dispatch = useDispatch();
@@ -13,10 +15,12 @@ export default function Error({ error }) {
 
   return (
     <ErrorWrapper>
-      <ErrorTitle>
+      <ErrorTitle components="h1" variant="h4">
         Oops, something went wrong! Please, try again later.
       </ErrorTitle>
-      <ErrorMessage>{error.message}</ErrorMessage>
+      <ErrorMessage components="paragraph" variant="paragraph">
+        {error.message}
+      </ErrorMessage>
       <Button
         type="button"
         onClick={handleGoBack}
@@ -29,7 +33,7 @@ export default function Error({ error }) {
   );
 }
 
-const ErrorWrapper = styled.div`
+const ErrorWrapper = styles.div`
   display: flex;
   max-width: 100%;
   width: 310px;
@@ -42,9 +46,9 @@ const ErrorWrapper = styled.div`
   background-color: rgba(251, 251, 251, 0.9);
   box-shadow: 8px 8px 15px -1px rgba(0, 0, 0, 0.87);
 `;
-const ErrorTitle = styled.h4`
+const ErrorTitle = styled(Typography)`
   display: block;
 `;
-const ErrorMessage = styled.p`
+const ErrorMessage = styled(Typography)`
   display: block;
 `;

@@ -3,21 +3,25 @@ import Navigation from 'components/Navigation/';
 import UserMenu from 'components/UserMenu';
 import AuthNav from 'components/AuthNav';
 import { authSelectors } from 'redux/auth';
+import { AppBar } from '@mui/material';
 import styled from 'styled-components';
 
-export default function AppBar() {
+export default function AppBarComponent() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
-    <HeaderWrapper>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </HeaderWrapper>
+    <AppBar color="primary" position="absolute">
+      <AppBarWrapper>
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      </AppBarWrapper>
+    </AppBar>
   );
 }
 
-const HeaderWrapper = styled.header`
+const AppBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center,
-  border-bottom: 1px solid #2A363B;
+  align-items: center;
+  padding: 0 8%;
+  border-bottom: 1px solid #2a363b;
 `;

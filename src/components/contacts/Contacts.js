@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Spinner from '../Spinner/Spinner';
+import Spinner from 'components/Spinner';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { selectors } from 'redux/contacts';
@@ -48,7 +48,6 @@ const Table = styled.table`
   margin-top: 25px;
   width: 100%;
   border-radius: 5px;
-  box-shadow: 2px 2px 1px 0px #7c7c7c;
 `;
 const Tr = styled.tr`
   background-color: rgb(231, 231, 231);
@@ -60,5 +59,5 @@ const Th = styled.th`
   height: 50px;
   text-transform: uppercase;
   color: var(--yellow);
-  background-color: var(--dark-purple);
+  background-color: var(--lighter-blue);
 `;
