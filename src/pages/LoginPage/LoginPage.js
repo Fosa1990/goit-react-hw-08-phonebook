@@ -1,4 +1,13 @@
-import { Button, TextField, Container, Typography } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Container,
+  Typography,
+  InputAdornment,
+  IconButton,
+} from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
@@ -9,6 +18,10 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   const handleChange = ({ target: { name, value } }) => {
     switch (name) {
@@ -46,7 +59,7 @@ export default function LoginPage() {
 
         <LoginInput
           label="Password"
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           name="password"
           value={password}
           onChange={handleChange}
@@ -54,6 +67,19 @@ export default function LoginPage() {
           required
           min="7"
           margin="dense"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                >
+                  {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
 
         <LoginButton

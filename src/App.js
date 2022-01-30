@@ -36,6 +36,7 @@ export default function App() {
       <Container fixed>
         <Toaster position="top-center" />
         <AppBar />
+
         {isFetchingCurrentUser && <Spinner />}
         {isFetchingCurrentUser ? (
           <Spinner />

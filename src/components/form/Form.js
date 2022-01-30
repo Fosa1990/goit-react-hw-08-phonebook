@@ -17,7 +17,7 @@ export default function Form() {
   const [number, setNumber] = useState('');
 
   const validateContact = (contactName, contactsNumber, contacts) => {
-    if (contacts.some(({ name }) => name === contactName)) {
+    if (contacts.some(({ name }) => name.toLowerCase() === contactName)) {
       toast.error(`"${contactName}" is already in contacts!`);
       return false;
     } else if (contacts.some(({ number }) => number === contactsNumber)) {
