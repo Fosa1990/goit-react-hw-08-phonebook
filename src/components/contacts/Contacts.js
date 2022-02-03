@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Spinner from 'components/Spinner';
+import ContactsItem from './ContactsItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { selectors } from 'redux/contacts';
 import { operations } from 'redux/contacts';
-import ContactsItem from './ContactsItem';
 import { authSelectors } from 'redux/auth';
 
 export default function Contacts() {

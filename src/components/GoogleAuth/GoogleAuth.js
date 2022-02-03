@@ -30,6 +30,12 @@ export default function GoogleAuth() {
   const [googleToken, setGoogleToken] = useState(null);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
+  console.log('name', name);
+  console.log('email', email);
+  console.log('avatar', avatar);
+  console.log('googleToken', googleToken);
+  console.log('isSignedIn', isSignedIn);
+
   const responseGoogle = response => {
     try {
       console.log('responseGoogle', response);
@@ -74,6 +80,7 @@ export default function GoogleAuth() {
         onSuccess={responseGoogle}
         onFailure={rejectedGoogle}
         cookiePolicy={'single_host_origin'}
+        // isSignedIn={true}
       />
 
       {/* <GoogleLogout
@@ -84,12 +91,6 @@ export default function GoogleAuth() {
     </>
   );
 }
-
-// console.log('name', name);
-// console.log('email', email);
-// console.log('avatar', avatar);
-// console.log('googleToken', googleToken);
-// console.log('isSignedIn', isSignedIn);
 
 /* http://localhost:3000/ */
 /* https://great-phonebook.netlify.app/ */

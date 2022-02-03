@@ -46,3 +46,19 @@ export const deleteContact = createAsyncThunk(
     }
   },
 );
+
+export const editContactName = createAsyncThunk(
+  'contacts/editContactName',
+  async ({ id, value }) => {
+    const { data } = await axios.patch(`/contacts/${id}`, { name: value });
+    return data;
+  },
+);
+
+export const editContactNumber = createAsyncThunk(
+  'contacts/editContactNumber',
+  async ({ id, value }) => {
+    const { data } = await axios.patch(`/contacts/${id}`, { number: value });
+    return data;
+  },
+);

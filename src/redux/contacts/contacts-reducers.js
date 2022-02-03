@@ -4,6 +4,8 @@ import {
   addContact,
   deleteContact,
   fetchContacts,
+  editContactName,
+  editContactNumber,
 } from './contacts-operations';
 import initialState from 'redux/initialState';
 
@@ -14,6 +16,10 @@ const itemsReducer = createReducer(items, {
   [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
   [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter(contact => contact.id !== payload),
+  [editContactName.fulfilled]: (state, { payload }) =>
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
+  [editContactNumber.fulfilled]: (state, { payload }) =>
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
 });
 
 const filterReducer = createReducer(filter, {
@@ -30,6 +36,12 @@ const loadingReducer = createReducer(loading, {
   [deleteContact.pending]: () => true,
   [deleteContact.fulfilled]: () => false,
   [deleteContact.rejected]: () => false,
+  [editContactName.pending]: () => true,
+  [editContactName.fulfilled]: () => false,
+  [editContactName.rejected]: () => false,
+  [editContactNumber.pending]: () => true,
+  [editContactNumber.fulfilled]: () => false,
+  [editContactNumber.rejected]: () => false,
 });
 
 const errorReducer = createReducer(error, {
