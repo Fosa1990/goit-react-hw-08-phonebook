@@ -49,16 +49,28 @@ export const deleteContact = createAsyncThunk(
 
 export const editContactName = createAsyncThunk(
   'contacts/editContactName',
-  async ({ id, value }) => {
-    const { data } = await axios.patch(`/contacts/${id}`, { name: value });
-    return data;
+  async ({ id, value }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch(`/contacts/${id}`, { name: value });
+      toast.success('Contact name successfully edited!');
+      return data;
+    } catch (error) {
+      toast.error(`${error}`);
+      return rejectWithValue(error);
+    }
   },
 );
 
 export const editContactNumber = createAsyncThunk(
   'contacts/editContactNumber',
-  async ({ id, value }) => {
-    const { data } = await axios.patch(`/contacts/${id}`, { number: value });
-    return data;
+  async ({ id, value }, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.patch(`/contacts/${id}`, { number: value });
+      toast.success('Contact number successfully edited!');
+      return data;
+    } catch (error) {
+      toast.error(`${error}`);
+      return rejectWithValue(error);
+    }
   },
 );

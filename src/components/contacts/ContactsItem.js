@@ -33,15 +33,10 @@ export default function ContactsItem({ name, number, id }) {
 
   const onDeleteContact = () => dispatch(operations.deleteContact(id));
 
-  const onValidateName = value => {
-    if (value.match(nameValidation)) return true;
-    return false;
-  };
+  const onValidateName = value => (value.match(nameValidation) ? true : false);
 
-  const onValidateNumber = value => {
-    if (value.match(numberValidation)) return true;
-    return false;
-  };
+  const onValidateNumber = value =>
+    value.match(numberValidation) ? true : false;
 
   return (
     <Tr>
@@ -60,7 +55,7 @@ export default function ContactsItem({ name, number, id }) {
         <EdiText
           id={id}
           name="number"
-          type="text"
+          type="number"
           value={numberEditor}
           onSave={onSaveNumber}
           validation={onValidateNumber}
@@ -96,6 +91,10 @@ const Td = styles.td`
   text-align: center;
   color: var(--dark-blue);
   outline: 0.1px solid rgb(243, 237, 237);
+
+  div[editext='view-container'] {
+justify-content: space-between;
+}
 `;
 const ButtonStyled = styled(Button)`
   background-color: transparent;
