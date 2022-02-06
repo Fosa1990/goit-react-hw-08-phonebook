@@ -13,6 +13,6 @@ Section.propTypes = {
 export const SectionWrapper = styled.section`
   padding: 0 10px 20px;
   margin: 0;
-  height: 100vh;
+  height: 100%;
   background-color: var(--light);
 `;

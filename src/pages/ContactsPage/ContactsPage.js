@@ -3,8 +3,12 @@ import Filter from 'components/Filter';
 import Contacts from 'components/Contacts';
 import { styled } from '@mui/material/styles';
 import { Typography, Container } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectors } from 'redux/contacts';
 
 export default function ContactsPage() {
+  const contacts = useSelector(selectors.filteredContacts);
+
   return (
     <>
       <Container fixed>
@@ -12,7 +16,7 @@ export default function ContactsPage() {
         <TypographyStyled align="center" component="h2" variant="h3">
           Contacts
         </TypographyStyled>
-        <Filter />
+        {contacts.length > 0 && <Filter />}
         <Contacts />
       </Container>
     </>

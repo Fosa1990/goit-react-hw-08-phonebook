@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { Button } from '@mui/material';
 import { operations } from 'redux/contacts';
 import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import styles from 'styled-components';
 import EdiText from 'react-editext';
+import { Button, TableCell, TableRow } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const nameValidation =
   /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
@@ -39,9 +40,9 @@ export default function ContactsItem({ name, number, id }) {
     value.match(numberValidation) ? true : false;
 
   return (
-    <Tr>
-      <Td>
-        <EdiText
+    <TableRowStyled>
+      <TableCellStyled align="left">
+        <EdiTextStyled
           id={id}
           name="name"
           type="text"
@@ -49,10 +50,16 @@ export default function ContactsItem({ name, number, id }) {
           onSave={onSaveName}
           validation={onValidateName}
           validationMessage={validationNameMessage}
+          cancelOnEscape={true}
+          showButtonsOnHover
+          hideIcons={true}
+          editButtonContent="&#128221;"
+          saveButtonContent="&#10004;"
+          cancelButtonContent="&#9747;"
         />
-      </Td>
-      <Td>
-        <EdiText
+      </TableCellStyled>
+      <TableCellStyled align="left">
+        <EdiTextStyled
           id={id}
           name="number"
           type="number"
@@ -60,41 +67,72 @@ export default function ContactsItem({ name, number, id }) {
           onSave={onSaveNumber}
           validation={onValidateNumber}
           validationMessage={validationNumberMessage}
+          cancelOnEscape={true}
+          showButtonsOnHover
+          hideIcons={true}
+          editButtonContent="&#128221;"
+          saveButtonContent="	&#10004;"
+          cancelButtonContent="&#9747;"
         />
-      </Td>
-      <Td>
+      </TableCellStyled>
+      <TableCellStyled align="left">
         <ButtonStyled
           type="button"
           variant="outlined"
           color="primary"
           onClick={onDeleteContact}
         >
-          Delete
+          <DeleteIcon />
         </ButtonStyled>
-      </Td>
-    </Tr>
+      </TableCellStyled>
+    </TableRowStyled>
   );
 }
+
 ContactsItem.propTypes = {
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
 };
-const Tr = styles.tr`
+
+const TableRowStyled = styles(TableRow)`
 background-color: var(--bright-blue);
   :nth-of-type(2n + 1) {
     background-color: var(--white);
   }
-`;
-const Td = styles.td`
+  td{
   padding: 7px 10px 7px 10px;
+  }
+`;
+const TableCellStyled = styles(TableCell)`
   text-align: center;
   color: var(--dark-blue);
   outline: 0.1px solid rgb(243, 237, 237);
 
-  div[editext='view-container'] {
-justify-content: space-between;
+    div[editext='view-container'] {
+      justify-content: space-between;
+      flex-wrap: wrap;
 }
+`;
+const EdiTextStyled = styled(EdiText)`
+  button {
+    border-radius: 5px;
+  }
+  button[editext='edit-button'] {
+    color: var(--dark);
+  }
+  button[editext='save-button'] {
+    &:hover {
+      background: var(--green);
+      color: var(--light);
+    }
+  }
+  button[editext='cancel-button'] {
+    &:hover {
+      background: var(--red);
+      color: var(--light);
+    }
+  }
 `;
 const ButtonStyled = styled(Button)`
   background-color: transparent;

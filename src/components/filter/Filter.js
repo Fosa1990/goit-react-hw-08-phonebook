@@ -28,6 +28,7 @@ const LabelStyled = styled(InputLabel)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 25px;
 `;
 const TitleStyled = styled(Typography)`
   color: var(--lighter-blue);
