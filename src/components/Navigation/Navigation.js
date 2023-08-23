@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { authSelectors } from 'redux/auth';
 import styled from 'styled-components';
+import { authSelectors } from 'redux/auth';
 
 const active = { color: 'var(--yellow)' };
 

@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   Button,
   TextField,
@@ -6,13 +8,11 @@ import {
   InputAdornment,
   IconButton,
 } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { authOperations } from 'redux/auth';
 import { styled } from '@mui/material/styles';
 import styles from 'styled-components';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { authOperations } from 'redux/auth';
 
 export default function LoginPage() {
   const dispatch = useDispatch();

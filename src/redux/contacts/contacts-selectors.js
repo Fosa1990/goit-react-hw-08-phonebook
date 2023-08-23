@@ -8,11 +8,11 @@ export const filteredContacts = memoize(state => {
   const contacts = getItems(state);
   const filter = getFilter(state);
 
-  const getFiltredContacts = contacts => {
+  const getFilteredContacts = contacts => {
     const lowerCaseFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(lowerCaseFilter),
     );
   };
-  return getFiltredContacts(contacts);
+  return getFilteredContacts(contacts);
 });

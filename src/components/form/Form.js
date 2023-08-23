@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectors } from 'redux/contacts';
-import { operations } from 'redux/contacts';
 import { Button, TextField, Typography, Container } from '@mui/material';
-import { NAME, NUMBER } from 'helpers/constants';
-import toast from 'react-hot-toast';
 import { styled } from '@mui/material/styles';
 import styles from 'styled-components';
+import toast from 'react-hot-toast';
+import { selectors, operations } from 'redux/contacts';
+import { NAME, NUMBER } from 'helpers/constants';
 
 export default function Form() {
   const contacts = useSelector(selectors.getItems);

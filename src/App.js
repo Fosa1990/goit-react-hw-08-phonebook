@@ -1,14 +1,14 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
-import AppBar from 'components/AppBar/AppBar';
+import { Toaster } from 'react-hot-toast';
+import AppBar from 'components/AppBar';
 import Container from 'components/Container';
 import PrivateRoute from 'components/Routes/PrivateRoute';
 import PublicRoute from 'components/Routes/PublicRoute';
 import Section from 'components/Section';
 import Spinner from 'components/Spinner';
 import { authOperations, authSelectors } from 'redux/auth';
-import { Toaster } from 'react-hot-toast';
 
 const ContactsPage = lazy(() =>
   import('./pages/ContactsPage' /* webpackChunkName: "Contacts-page" */),

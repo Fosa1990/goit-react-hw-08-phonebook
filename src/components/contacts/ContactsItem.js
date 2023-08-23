@@ -1,21 +1,18 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { operations } from 'redux/contacts';
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
 import styles from 'styled-components';
 import EdiText from 'react-editext';
 import { Button, TableCell, TableRow } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-const nameValidation =
-  /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
-const numberValidation =
-  /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/;
-const validationNameMessage =
-  "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan";
-const validationNumberMessage =
-  'number number must be digits and can contain spaces, dashes, parentheses and can start with +';
+import { operations } from 'redux/contacts';
+import {
+  nameValidation,
+  numberValidation,
+  validationNameMessage,
+  validationNumberMessage,
+} from 'helpers/constants';
 
 export default function ContactsItem({ name, number, id }) {
   const [nameEditor, setNameEditor] = useState(name);

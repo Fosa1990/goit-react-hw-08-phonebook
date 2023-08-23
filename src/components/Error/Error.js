@@ -1,9 +1,8 @@
-import { Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { authOperations } from 'redux/auth';
-import { Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { Button, Typography } from '@mui/material';
 import styles from 'styled-components';
+import { styled } from '@mui/material/styles';
+import { authOperations } from 'redux/auth';
 
 export default function Error({ error }) {
   const dispatch = useDispatch();

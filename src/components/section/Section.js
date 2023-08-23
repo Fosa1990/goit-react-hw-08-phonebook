@@ -11,8 +11,12 @@ Section.propTypes = {
 };
 
 export const SectionWrapper = styled.section`
-  padding: 0 10px 20px;
+  padding: 25px 10px 20px;
   margin: 0;
   height: 100%;
   background-color: var(--light);
+
+  @media screen and (max-width: 767px) {
+    padding: 65px 0 20px;
+  }
 `;

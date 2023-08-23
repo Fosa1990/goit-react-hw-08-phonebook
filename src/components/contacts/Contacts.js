@@ -1,11 +1,10 @@
-import styled from 'styled-components';
-import Spinner from 'components/Spinner';
-import ContactsItem from './ContactsItem';
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { selectors, operations } from 'redux/contacts';
-import addFilter from 'redux/contacts/contacts-actions';
+import { useSelector, useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { selectors, operations, addFilter } from 'redux/contacts';
 import { authSelectors } from 'redux/auth';
+import ContactsItem from './ContactsItem';
+import Spinner from 'components/Spinner';
 import {
   Table,
   TableBody,

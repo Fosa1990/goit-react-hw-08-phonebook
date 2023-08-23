@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import { authSelectors } from 'redux/auth';
+import PropTypes from 'prop-types';
 
 export default function PrivateRoute({ children, redirectTo, ...routeProps }) {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);

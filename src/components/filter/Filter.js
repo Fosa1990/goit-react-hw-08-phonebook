@@ -1,8 +1,7 @@
-import { selectors } from 'redux/contacts';
 import { useSelector, useDispatch } from 'react-redux';
-import addFilter from 'redux/contacts/contacts-actions';
 import { Typography, InputLabel, Input, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { selectors, addFilter } from 'redux/contacts';
 
 export default function Filter() {
   const dispatch = useDispatch();
